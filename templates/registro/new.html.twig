@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Registro{% endblock %}
+
+{% block body %}
+    <h1>Create new Registro</h1>
+
+    {{ form_start(form) }}
+    
+    {{ form_widget(form.fecha) }}
+    {{ form_widget(form.comentarios) }}
+
+    {{ form_widget(form.cliente) }}
+
+    {{ form_widget(form.administrador) }}
+
+    <div class="row">
+            <div class="form-group col-sm-12">
+                <a href="#" data-collection="{{ form.vehiculos.vars.id }}" class="collection-action collection-add btn btn-success" title="Agregar"><i class="fa fa-plus-circle"></i> Agregar Banner</a>
+            </div>
+        </div>
+        <div class="row">
+            {{ form_widget(form.vehiculos) }}
+        </div>
+
+        <ul class="list-inline">
+            <li class="list-inline-item" ><a class="btn btn-primary" href="{{ path('administrador_all') }}">back to list</a></li>
+            <li class="list-inline-item" ><button class="btn btn-success">{{ button_label|default('Save') }}</button></li>
+        </ul>
+    
+    {{ form_end(form) }}
+
+    {% endblock %}
+
+{% block javascripts %}
+<script src="{{ asset('assets/js/symfony-collection/jquery.collection.js') }}"></script>
+<script type="text/javascript">
+    $('.vehiculos-collection').collection({
+        custom_add_location: true,
+        up: false,
+        down: false,
+        remove: '<a href="#" class="btn btn-danger"><span class="fa fa-trash"></span></a>'
+    });
+</script>
+{% endblock %}

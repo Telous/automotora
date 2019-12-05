@@ -1,0 +1,20 @@
+<div id="modalDelete" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title text-center">¿Esta seguro que desea quitar este registro?</h3>
+            </div>
+            <div class="modal-body text-center">
+                <p>Advertencia: este proceso es irreversible.</p>
+                <form class="delete_form" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input id="token" type="hidden" name="_token">
+                    <button type="button" class="btn btn-danger btn_delete"> <i class="fa fa-trash"></i> Borrar</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn_m_cancel" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

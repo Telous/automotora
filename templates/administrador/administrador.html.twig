@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Administrador{% endblock %}
+
+{% block body %}
+    <h1>Create new Administrador</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}    
+        <ul class="list-inline">
+            <li class="list-inline-item" ><a class="btn btn-primary" href="{{ path('administrador_all') }}">back to list</a></li>
+            <li class="list-inline-item" ><button class="btn btn-success">{{ button_label|default('Save') }}</button></li>
+        </ul>
+    {{ form_end(form) }}
+
+{% endblock %}
