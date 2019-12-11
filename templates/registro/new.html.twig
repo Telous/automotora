@@ -1,40 +1,63 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Registro{% endblock %}
+{% block title %}Registro{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker-standalone.min.css">
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Registro</h1>
+    <h1>Registro</h1>
 
     {{ form_start(form) }}
-    
-    {{ form_widget(form.fecha) }}
-    {{ form_widget(form.comentarios) }}
 
-    {{ form_widget(form.cliente) }}
-
-    {{ form_widget(form.administrador) }}
+    <div class="form-group">
+            {{ form_widget(form.cliente) }}
+    </div>
+    <div class="form-group">
+            {{ form_widget(form.administrador) }}
+    </div>
+    <div class="form-group">
+            {{ form_widget(form.comentarios) }}
+    </div>
 
     <div class="row">
-            <div class="form-group col-sm-12">
-                <a href="#" data-collection="{{ form.vehiculos.vars.id }}" class="collection-action collection-add btn btn-success" title="Agregar"><i class="fa fa-plus-circle"></i> Agregar Banner</a>
-            </div>
-        </div>
-        <div class="row">
-            {{ form_widget(form.vehiculos) }}
-        </div>
+        <div class="form-group col-sm-12">
 
-        <ul class="list-inline">
-            <li class="list-inline-item" ><a class="btn btn-primary" href="{{ path('administrador_all') }}">back to list</a></li>
-            <li class="list-inline-item" ><button class="btn btn-success">{{ button_label|default('Save') }}</button></li>
-        </ul>
+            <a href="#" data-collection="{{ form.vehiculo.vars.id }}"
+            class="collection-action collection-add btn btn-success" title="Agregar">
+            <i class="fa fa-plus-circle"></i> Agregar Vehiculo</a>
+        </div>
+    </div>
+    
+    <div class="row">
+
+        
+    </div>
+    {{ form_widget(form.vehiculo) }}
+
+    <ul class="list-inline">
+        <li class="list-inline-item" ><a class="btn btn-primary" href="{{ path('registro_all') }}">back to list</a></li>
+        <li class="list-inline-item" ><button class="btn btn-success">{{ button_label|default('Save') }}</button></li>
+    </ul>
     
     {{ form_end(form) }}
 
     {% endblock %}
 
 {% block javascripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
 <script src="{{ asset('assets/js/symfony-collection/jquery.collection.js') }}"></script>
 <script type="text/javascript">
+    $(function () {
+        $('.datetimepicker1').datetimepicker({
+            defaultDate: Date.now(),
+            locale: 'es'
+        });
+    });
+
     $('.vehiculos-collection').collection({
         custom_add_location: true,
         up: false,

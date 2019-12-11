@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ClienteController extends AbstractController
 {
     /**
-     * @Route("/", name="cliente_index", methods={"GET"})
+     * @Route("/", name="cliente_all", methods={"GET"})
      */
     public function index(ClienteRepository $clienteRepository): Response
     {
@@ -39,7 +39,7 @@ class ClienteController extends AbstractController
             $entityManager->persist($cliente);
             $entityManager->flush();
 
-            return $this->redirectToRoute('cliente_index');
+            return $this->redirectToRoute('cliente_all');
         }
 
         return $this->render('cliente/new.html.twig', [
@@ -69,7 +69,7 @@ class ClienteController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('cliente_index');
+            return $this->redirectToRoute('cliente_all');
         }
 
         return $this->render('cliente/edit.html.twig', [

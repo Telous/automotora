@@ -19,11 +19,6 @@ class Registro
     private $id;
 
     /**
-     * @ORM\Column(type="datetime")
-     */
-    private $fecha;
-
-    /**
      * @ORM\Column(type="text", nullable=true)
      */
     private $comentarios;
@@ -41,13 +36,13 @@ class Registro
     private $cliente;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Vehiculo", mappedBy="registro")
+     * @ORM\OneToMany(targetEntity="App\Entity\RegistroVehiculo", mappedBy="registro", cascade={"persist", "remove"}, orphanRemoval=true)
      */
-    private $vehiculos;
+    private $vehiculo;
 
     public function __construct()
     {
-        $this->vehiculos = new ArrayCollection();
+        $this->vehiculo = new ArrayCollection();
     }
 
     public function __toString() {
@@ -57,18 +52,6 @@ class Registro
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getFecha(): ?\DateTimeInterface
-    {
-        return $this->fecha;
-    }
-
-    public function setFecha(\DateTimeInterface $fecha): self
-    {
-        $this->fecha = $fecha;
-
-        return $this;
     }
 
     public function getComentarios(): ?string
@@ -108,27 +91,27 @@ class Registro
     }
 
     /**
-     * @return Collection|Vehiculo[]
+     * @return Collection|RegistroVehiculo[]
      */
-    public function getVehiculos(): Collection
+    public function getVehiculo(): Collection
     {
-        return $this->vehiculos;
+        return $this->vehiculo;
     }
 
-    public function addVehiculo(Vehiculo $vehiculo): self
+    public function addVehiculo(RegistroVehiculo $vehiculo): self
     {
-        if (!$this->vehiculos->contains($vehiculo)) {
-            $this->vehiculos[] = $vehiculo;
+        if (!$this->vehiculo->contains($vehiculo)) {
+            $this->vehiculo[] = $vehiculo;
             $vehiculo->setRegistro($this);
         }
 
         return $this;
     }
 
-    public function removeVehiculo(Vehiculo $vehiculo): self
+    public function removeVehiculo(RegistroVehiculo $vehiculo): self
     {
-        if ($this->vehiculos->contains($vehiculo)) {
-            $this->vehiculos->removeElement($vehiculo);
+        if ($this->vehiculo->contains($vehiculo)) {
+            $this->vehiculo->removeElement($vehiculo);
             // set the owning side to null (unless already changed)
             if ($vehiculo->getRegistro() === $this) {
                 $vehiculo->setRegistro(null);

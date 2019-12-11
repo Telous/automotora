@@ -2,9 +2,8 @@
 
 namespace App\Form;
 
-use App\Entity\Registro;
+use App\Entity\RegistroVehiculo;
 use App\Entity\Vehiculo;
-use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -15,7 +14,7 @@ class RegistroVehiculoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('vehiculos', EntityType::class, array(
+            ->add('vehiculo', EntityType::class, array(
                 'class' => Vehiculo::class,
                 'placeholder' => '- Elija un producto -',
                 'expanded' => false,
@@ -29,5 +28,23 @@ class RegistroVehiculoType extends AbstractType
                 // },
             ))
         ;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => RegistroVehiculo::class
+        ]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
+    {
+        return 'registro_vehiculo';
     }
 }

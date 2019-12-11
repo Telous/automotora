@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class VehiculoController extends AbstractController
 {
     /**
-     * @Route("/", name="vehiculo_index", methods={"GET"})
+     * @Route("/", name="vehiculo_all", methods={"GET"})
      */
     public function index(VehiculoRepository $vehiculoRepository): Response
     {
@@ -39,7 +39,7 @@ class VehiculoController extends AbstractController
             $entityManager->persist($vehiculo);
             $entityManager->flush();
 
-            return $this->redirectToRoute('vehiculo_index');
+            return $this->redirectToRoute('vehiculo_all');
         }
 
         return $this->render('vehiculo/new.html.twig', [
@@ -69,7 +69,7 @@ class VehiculoController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('vehiculo_index');
+            return $this->redirectToRoute('vehiculo_all');
         }
 
         return $this->render('vehiculo/edit.html.twig', [

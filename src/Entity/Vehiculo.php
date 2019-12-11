@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -42,9 +44,14 @@ class Vehiculo
     private $year;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Registro", inversedBy="vehiculos")
+     * @ORM\OneToMany(targetEntity="App\Entity\RegistroVehiculo", mappedBy="vehiculo", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $registro;
+
+    public function __construct()
+    {
+        $this->registro = new ArrayCollection();
+    }
 
     public function __toString() {
 
@@ -106,15 +113,35 @@ class Vehiculo
         return $this;
     }
 
-    public function getRegistro(): ?Registro
+    /**
+     * @return Collection|RegistroVehiculo[]
+     */
+    public function getRegistro(): Collection
     {
         return $this->registro;
     }
 
-    public function setRegistro(?Registro $registro): self
+    public function addRegistro(RegistroVehiculo $registro): self
     {
-        $this->registro = $registro;
+        if (!$this->registro->contains($registro)) {
+            $this->registro[] = $registro;
+            $registro->setVehiculo($this);
+        }
 
         return $this;
     }
+
+    public function removeRegistro(RegistroVehiculo $registro): self
+    {
+        if ($this->registro->contains($registro)) {
+            $this->registro->removeElement($registro);
+            // set the owning side to null (unless already changed)
+            if ($registro->getVehiculo() === $this) {
+                $registro->setVehiculo(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

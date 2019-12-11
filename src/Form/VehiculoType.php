@@ -16,7 +16,6 @@ class VehiculoType extends AbstractType
             ->add('marca')
             ->add('modelo')
             ->add('year')
-            ->add('registro')
         ;
     }
 
