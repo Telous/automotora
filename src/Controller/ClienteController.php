@@ -89,6 +89,7 @@ class ClienteController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('cliente_index');
+        $this->addFlash('danger','Datos Eliminados!');
+        return new Response;
     }
 }
