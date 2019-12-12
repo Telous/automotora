@@ -112,7 +112,6 @@ class Registro
     {
         if ($this->vehiculo->contains($vehiculo)) {
             $this->vehiculo->removeElement($vehiculo);
-            // set the owning side to null (unless already changed)
             if ($vehiculo->getRegistro() === $this) {
                 $vehiculo->setRegistro(null);
             }

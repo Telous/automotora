@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Administrador index</h1>
+    <h1>Administradores</h1>
 
     <table id="tabla-1" class="table table-striped table-bordered" style="width:100%">
         <thead>
@@ -17,7 +17,7 @@
                 <th>Apellido</th>
                 <th>Rut</th>
                 <th>Mail</th>
-                <th>actions</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -28,13 +28,13 @@
                 <td>{{ administrador.rut }}</td>
                 <td>{{ administrador.mail }}</td>
                 <td>
-                    <a class="btn btn-primary" href="{{ path('administrador_edit', {'id': administrador.id}) }}"><i class="far fa-edit"></i> edit</a>
+                    <a class="btn btn-primary" href="{{ path('administrador_edit', {'id': administrador.id}) }}"><i class="far fa-edit"></i> Editar</a>
                     <a class="btn btn-danger btn-modal-delete" data-delete="{{ path('administrador_delete', {'id': administrador.id}) }}" data-token="{{ csrf_token('delete' ~ administrador.id) }}" data-toggle="modal" data-target="#modalDelete" href="">Borrar</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">No existe!</td>
             </tr>
         {% endfor %}
         </tbody>

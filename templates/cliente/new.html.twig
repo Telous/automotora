@@ -1,11 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Cliente{% endblock %}
+{% block title %}Nuevo Cliente{% endblock %}
 
 {% block body %}
-    <h1>Create new Cliente</h1>
+    <h1>Crea un nuevo Cliente</h1>
 
-    {{ include('cliente/_form.html.twig') }}
+    {{ form_start(form) }}
+        {{ form_widget(form) }}    
+        <ul class="list-inline">
+            <li class="list-inline-item" ><a class="btn btn-primary" href="{{ path('cliente_all') }}">Volver atras</a></li>
+            <li class="list-inline-item" ><button class="btn btn-success">{{ button_label|default('Guardar') }}</button></li>
+        </ul>
+    {{ form_end(form) }}
 
-    <a href="{{ path('cliente_all') }}">back to list</a>
 {% endblock %}

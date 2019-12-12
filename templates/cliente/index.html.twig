@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Cliente index{% endblock %}
+{% block title %}Cliente{% endblock %}
 
 {% block stylesheets %}
 <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Cliente index</h1>
+    <h1>Agregar Cliente</h1>
 
     <table id="tabla-1" class="table table-striped table-bordered" style="width:100%">
         <thead>
@@ -17,8 +17,8 @@
                 <th>Apellido</th>
                 <th>Rut</th>
                 <th>Celular</th>
-                <th>Mail</th>
-                <th>actions</th>
+                <th>Correo</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -30,13 +30,13 @@
                 <td>{{ cliente.celular }}</td>
                 <td>{{ cliente.mail }}</td>
                 <td>
-                    <a class="btn btn-primary" href="{{ path('cliente_edit', {'id': cliente.id}) }}"><i class="far fa-edit"></i> edit</a>
+                    <a class="btn btn-primary" href="{{ path('cliente_edit', {'id': cliente.id}) }}"><i class="far fa-edit"></i> Editar</a>
                     <a class="btn btn-danger btn-modal-delete" data-delete="{{ path('cliente_delete', {'id': cliente.id}) }}" data-token="{{ csrf_token('delete' ~ cliente.id) }}" data-toggle="modal" data-target="#modalDelete" href="">Borrar</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">No existe</td>
             </tr>
         {% endfor %}
         </tbody>
